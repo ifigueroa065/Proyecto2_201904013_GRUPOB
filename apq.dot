@@ -1,0 +1,18 @@
+digraph automatadepila{ 
+rankdir=LR;
+node[style=filled ,color="#28EE99"];
+nodo1[label="i" ,shape=circle];
+nodo2[label="p" ,shape=circle];
+nodo3[label="q" ,shape=circle, width=0.8];
+nodo4[label="f" ,shape=doublecircle];
+nodo1->nodo2[label="λ,λ;#"];nodo2->nodo3[label="λ,λ;S"];nodo3->nodo3[label="λ,S;A
+λ,A;aAa
+λ,A;B
+λ,B;bBb
+λ,B;C
+λ,C;zC
+λ,C;z
+a,a;λ
+b,b;λ
+z,z;λ
+"];nodo3->nodo4[label="λ,#;λ"];}

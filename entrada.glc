@@ -20,3 +20,13 @@ D->1 C
 C->0 A
 D->0 B
 *
+Grm3
+S,A,B,C;a,b,z,$;S
+S->A
+A->a A a
+A->B
+B->b B b
+B->C
+C->z C
+C->$
+*
