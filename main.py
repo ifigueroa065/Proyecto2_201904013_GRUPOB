@@ -5,6 +5,8 @@ import tkinter.filedialog
 import webbrowser
 from Gramatica import GLC
 from Gramatica import GRAMA
+
+
 GRAMATICAS=[]
 REPORTE=[]
 nombre=""
@@ -93,28 +95,50 @@ def REPORTE_AP():
             <div class="post-preview">
             
             <a >
-                <h2 class="post-title">
-                NOMBRE DE AUTOMATA
+                <h2 class="post-title">""")
+    f.write("Nombre: AP_"+nombre)
+    cadena=""
+    alfa=""
+    for i in GRAMATICAS:
+        if i.nombre==nombre:
+            print("______________________________________________________")
+            print("Nombre de la gramática tipo 2: "+ str(i.nombre))
+            for j in range(len(i.terminales)):
+                if j==(len(i.terminales)-1):
+                    cadena+=i.terminales[j]
+                    alfa+=i.terminales[j]+","
+                else:
+                    cadena+=i.terminales[j] +","
+                    alfa+=i.terminales[j] +","
+            for y in range(len(i.no_terminales)):
+                if j==(len(i.no_terminales)-1):
+                    alfa+=i.no_terminales[y]
+                else:
+                    alfa+=i.no_terminales[y] +","
+            alfa+="#"
+    f.write("""  
                 </h2>
-                <h3 class="post-subtitle">
-                terminales
+                <h3 class="post-subtitle">""")
+    f.write("Terminales={"+cadena+"}")            
+    f.write("""  
+                </h3>
+                <h3 class="post-subtitle">""")
+    f.write("Alfabeto de pila={"+alfa+"}")
+    f.write("""
                 </h3>
                 <h3 class="post-subtitle">
-                alfabeto de pila
+                Estados={i,p,q,f}
                 </h3>
                 <h3 class="post-subtitle">
-                estados
+                Estado inicial={i}
                 </h3>
                 <h3 class="post-subtitle">
-                estado inicial
-                </h3>
-                <h3 class="post-subtitle">
-                estado de aceptacion
+                Estado de aceptacion={f}
                 </h3>
             </a>
             </div>
             <br>
-            <img src="apq.png">
+            <center><img src="apq.png"></center>
             <br>
             <br>
             <br>
@@ -264,8 +288,15 @@ def RECORRIDO_AP():
             <div class="post-preview">
             <a>
                 <h2 class="post-title">
-                ERRORES REGISTRADOS
+                Iteración 1
                 </h2>
+                <center><img src="apq.png"></center>
+            <h3 class="post-subtitle">
+                Pila=#
+            </h3>
+            <h3 class="post-subtitle">
+                Entrada=a
+                </h3>  
             </a>
             <p class="post-meta">
     """)
@@ -415,7 +446,7 @@ def RESUMEN_AP():
             <div class="post-preview">
             <a>
                 <h2 class="post-title">
-                OPERACIONES REALIZADAS
+                TABLA DE TRANSICIONES
                 </h2>
             </a>
             <p class="post-meta">
@@ -424,11 +455,11 @@ def RESUMEN_AP():
     #aqui va el contenido
     f.write("""
         <table class="table table-dark table-hover">
-                <td><center><h4>NO.</h4></center></td>
-                <td><center><h4>HORA</h4></center></td>
-                <td><center><h4>OPERACION</h4></center></td>
-                <td><center><h4>NOMBRE</h4></center></td>
-        <tr><td><center><h4>1</h4></center></td><td><h5>2021-04-10 12:40:58.399911</h5></td><td><h5>ROTACION HORIZONTAL</h5></td><td><h5>Matriz_1</h5></td><t/r><tr><td><center><h4>2</h4></center></td><td><h5>2021-04-10 12:41:57.880616</h5></td><td><h5>ROTACION HORIZONTAL</h5></td><td><h5>Matriz_6</h5></td><t/r><tr><td><center><h4>3</h4></center></td><td><h5>2021-04-10 12:42:43.030628</h5></td><td><h5>ROTACION VERTICAL</h5></td><td><h5>Matriz_1</h5></td><t/r><tr><td><center><h4>4</h4></center></td><td><h5>2021-04-10 12:43:27.294641</h5></td><td><h5>ROTACION VERTICAL</h5></td><td><h5>Matriz_1</h5></td><t/r><tr><td><center><h4>5</h4></center></td><td><h5>2021-04-10 12:45:01.512556</h5></td><td><h5>TRANSPUESTA</h5></td><td><h5>Matriz_4</h5></td><t/r><tr><td><center><h4>6</h4></center></td><td><h5>2021-04-10 12:45:46.153850</h5></td><td><h5>LIMPIAR ZONA</h5></td><td><h5>Matriz_4</h5></td><t/r><tr><td><center><h4>7</h4></center></td><td><h5>2021-04-10 12:46:15.352530</h5></td><td><h5>AGREGAR FILA HORIZONTAL</h5></td><td><h5>Matriz_4</h5></td><t/r><tr><td><center><h4>8</h4></center></td><td><h5>2021-04-10 12:46:59.177791</h5></td><td><h5>AGREGAR FILA VERTICAL</h5></td><td><h5>Matriz_4</h5></td><t/r><tr><td><center><h4>9</h4></center></td><td><h5>2021-04-10 12:47:37.324498</h5></td><td><h5>INSERTAR TRIÁNGULO RECTÁNGULO</h5></td><td><h5>Matriz_4</h5></td><t/r><tr><td><center><h4>10</h4></center></td><td><h5>2021-04-10 12:48:30.248059</h5></td><td><h5>INSERTAR RECTÁNGULO</h5></td><td><h5>Matriz_4</h5></td><t/r></table> 
+                <td><center><h4>Iteración</h4></center></td>
+                <td><center><h4>Pila</h4></center></td>
+                <td><center><h4>Entrada</h4></center></td>
+                <td><center><h4>Transiciones</h4></center></td>
+    </table> 
     """)
     f.write("""
         </div>
@@ -747,9 +778,113 @@ def Op3():
     else:
         print("no se ha generado ninguna gramática")
     
-
 def Op4():
+    global REPORTE
     os.system('cls')
+    print("--------------------Recorrido autómata de pila equivalente--------------------")
+    
+    print("GRAMÁTICAS REGULARES (NO SE CARGARON)")
+    for i in REPORTE:
+        
+        print("______________________________________________________")
+        print("Nombre de la gramática tipo 2: "+ str(i.nombre))
+            
+        print("No terminales = {",end="")
+        for j in range(len(i.no_terminales)):
+            if j==(len(i.no_terminales)-1):
+                print(i.no_terminales[j],end="")
+            else:
+                print(i.no_terminales[j] +",",end="")    
+        print("}\n", end="")
+            
+        print("Terminales = {", end="")
+        for j in range(len(i.terminales)):
+            if j==(len(i.terminales)-1):
+                print(i.terminales[j],end="")
+            else:
+                print(i.terminales[j] +",",end="")
+        print("}\n", end="")
+            
+        print("No terminal Inicial = "+ str(i.inicial[0]))
+        produccion=[]
+        print("Producciones")
+        for x in range(len(i.transiciones)):
+            produccion.append(i.transiciones[x].split("->"))
+        o=0
+        armando=[] 
+
+        while o<len(i.no_terminales):
+            trans=[]
+            for x in range(len(produccion)):
+                if produccion[x][0]==i.no_terminales[o]:
+                    trans.append(produccion[x][1]) 
+            armando.append(GRAMA(i.no_terminales[o],trans))
+            o+=1
+
+        #imprimiendo producción
+        for i in armando:
+            print(i.no_terminales+"->",end="")
+            if len(i.transiciones)==1:
+                for j in i.transiciones:
+                    print(j) 
+            elif len(i.transiciones)>1:
+                for j in range(len(i.transiciones)):
+                    if j==0:
+                        print(i.transiciones[j])
+                    else:
+                        print("  | " + i.transiciones[j]) 
+    """#Mostrando datos de la Gramática solicitada
+    for i in GRAMATICAS:
+        if i.nombre==nombre:
+            print("______________________________________________________")
+            print("Nombre de la gramática tipo 2: "+ str(i.nombre))
+            
+            print("No terminales = {",end="")
+            for j in range(len(i.no_terminales)):
+                if j==(len(i.no_terminales)-1):
+                    print(i.no_terminales[j],end="")
+                else:
+                    print(i.no_terminales[j] +",",end="")    
+            print("}\n", end="")
+                
+            print("Terminales = {", end="")
+            for j in range(len(i.terminales)):
+                if j==(len(i.terminales)-1):
+                    print(i.terminales[j],end="")
+                else:
+                    print(i.terminales[j] +",",end="")
+            print("}\n", end="")
+                
+            print("No terminal Inicial = "+ str(i.inicial[0]))
+            produccion=[]
+            print("Producciones")
+            for x in range(len(i.transiciones)):
+                produccion.append(i.transiciones[x].split("->"))
+            #separando derecho
+            print(produccion)
+            m="(i,λ,λ;p,#)"
+            s="(p,λ,λ;q,"+i.inicial+")"
+            q="(q,λ,#;q,produccion)"
+            trans=[]
+            print("Transiciones")
+            
+            for x in range(len(produccion)):
+                a=produccion[x][0]
+                b=produccion[x][1]
+                c=("(q,s,#;q,")
+                c=("λ,"+str(a.replace(" ",""))+";"+str(b.replace(" ","")))
+                trans.append(c)
+            for t in range(len(i.terminales)):
+                a=i.terminales[t]
+                y=a+","+a+";λ"
+                trans.append(y)
+            cadena=""
+            for p in trans:
+                cadena=cadena + str(p)+"\n"
+
+            print("imprimiendo cadena")
+            print(cadena)"""
+    webbrowser.open_new_tab('RECORRIDO.html')
 
 os.system('cls')
 print("___________________________________________________________________________________")
@@ -766,7 +901,7 @@ print("     ********************************************************************
 print("___________________________________________________________________________________")
 
 #cuenta regresiva
-"""for i in range(5, 0, -1):
+for i in range(5, 0, -1):
     sys.stdout.write(" \r ")
     sys.stdout.write(" --->{:2d}  ".format(i))
     sys.stdout.flush()
@@ -776,7 +911,7 @@ sys.stdout.write("\r  BIENVENIDO !            \n")
 
 input("\nEnter para continuar...")
 os.system('cls')
-"""
+
 while True:
     MENU()
     print("\n          -------------Seleccione una Opción-------------\n")
